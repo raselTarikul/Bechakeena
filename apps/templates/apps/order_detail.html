@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block extracss %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <p><strong>Order Id:</strong> {{ order.id }}</p>
+        <p><strong>Customer:</strong> {{ order.device.shop_name }}</p>
+        <p><strong>Order Date:</strong> {{ order.created_time }}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
+    <div class="col-md-12">
+        <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+            {% for line in order.orderline_set.all %}
+                <tr>
+                    <td>{{ line.product.name }}</td>
+                    <td>{{ line.unite_price }}</td>
+                    <td>{{ line.quantity }}</td>
+                    <td>{{ line.amount }}</td>
+                </tr>
+             {% endfor %}
+        <tr>
+            <td colspan="3">Total</td>
+            <td>{{ order.order_total }}</td>
+        </tr>
+        </table>
+        <div class="col-md-12">
+             <button class="btn btn-primary hidden-print" onclick="printFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block extrajs %}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('.dataTable').DataTable();
+        } );
+        function printFunction() {
+            window.print();
+        }
+    </script>
+{% endblock %}

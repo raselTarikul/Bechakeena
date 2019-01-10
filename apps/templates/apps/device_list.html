@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block extracss %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">App User List</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="col-md-12">
+            <table class="table dataTable">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Shop Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in object_list %}
+                <tr>
+                    <td>{{ device.user.username }}</td>
+                    <td>{{ device.shop_name }}</td>
+                    <th><a class="btn btn-danger" href="{% url 'device_reset_pin' device.pk %}">Reset Pin</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrajs %}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready( function () {
+    $('.dataTable').DataTable();
+} );
+    </script>
+{% endblock %}

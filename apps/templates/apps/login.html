@@ -1,0 +1,124 @@
+{% extends 'login_layout.html' %}
+{% load staticfiles %}
+{% block extracss %}
+<style type="text/css">
+html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+    .super-admin-wrap {
+      position: relative;
+      background-image: url('{% static "apps/images/imgpsh_fullsize.jpeg" %}');
+      background-position: center center;
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      height: 100%;
+      width: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+
+      .form-signin {
+        max-width: 280px;
+        margin: 10px auto;
+      }
+
+      .form-signin .checkbox {
+        font-weight: normal;
+      }
+
+      .form-signin .form-control {
+        position: relative;
+        font-size: 16px;
+        height: auto;
+        padding: 10px;
+      }
+
+      .form-signin input[type="text"] {
+        margin-bottom: -1px;
+        border-top: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-left: 1px solid transparent;
+        box-shadow: none;
+        border-radius: 3px 3px 0px 0px;
+      }
+
+      .form-signin input[type="text"]:focus {
+        /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);*/
+      }
+
+      .form-signin input[type="password"] {
+        z-index: 2;
+        margin-bottom: 20px;
+        border-top: none;
+        border-bottom: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-left: 1px solid transparent;
+        border-radius: 0px 0px 3px 3px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      }
+
+      .form-signin input[type="password"]:focus {
+        /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);*/
+      }
+
+    .form-signin input[type="submit"] {
+        z-index: 2;
+        margin-bottom: 20px;
+        border-top: none;
+        border-bottom: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-left: 1px solid transparent;
+        border-radius: 0px 0px 3px 3px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      }
+
+    .form-signin input[type="submit"]:focus {
+        /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);*/
+      }
+
+
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="super-admin-wrap">
+  <div class="container relative">
+    {% if messages %}
+    {% for message in messages %}
+    <h3 class="{{ message.tags }}">{{ message }}</h3>
+    {% endfor %}
+{% endif %}
+    <form action="" method="post" class="form-signin">
+      <h3 style="color: #fff;">Admin Log In</h3>
+    <div class="form-error">
+        <span style="color: red;">{{ error }}</span>
+    </div>
+        <p>
+            {{ message }}
+        </p>
+        {% csrf_token %}
+          <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+          <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+
+          <input class="btn btn-lg btn-block" type="submit">Log in</input>
+      </form>
+  </div>
+</div>
+{% endblock %}
