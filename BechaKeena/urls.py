@@ -19,6 +19,7 @@ from django.urls import path
 
 from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 schema_view = get_swagger_view(title='Bechakena API v1')
 
@@ -31,3 +32,5 @@ urlpatterns = [
     path('apis/', include('apis.urls')),
 
 ]
+
+urlpatterns += staticfiles_urlpatterns()
