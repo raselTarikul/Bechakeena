@@ -36,7 +36,7 @@ class ChangePassSerializer(serializers.Serializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('name', 'parent')
+        fields = ('id', 'name', 'parent')
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -55,7 +55,7 @@ class OrderlineSerializer(serializers.ModelSerializer):
     # product = serializers.IntegerField(source=)
     class Meta:
         model = OrderLine
-        fields = ('id','product', 'quantity', 'unite_price', 'amount')
+        fields = ('id', 'product', 'quantity', 'unite_price', 'amount')
 
 
 class OrderSerializer(serializers.ModelSerializer):
