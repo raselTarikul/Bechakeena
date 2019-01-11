@@ -5,6 +5,8 @@ migrations/
 __pycache__/
 media/upload/
 
+staticfiles/
+
 .coverage
 htmlcov/
 
