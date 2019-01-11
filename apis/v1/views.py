@@ -104,8 +104,8 @@ class ProductList(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
-        products = Product.objects.all()
-        serializers = ProductSerializer(products, many=True)
+        products = Product.objects.all().order_by('-updated_time')
+        serializers = ProductSerializer(products, many=True, context={"request": request})
         return Response(serializers.data)
 
 
@@ -116,11 +116,11 @@ class ProductListByCategory(APIView):
     def get(self, request, *args, **kwargs):
         pk = kwargs['pk'] if 'pk' in kwargs.keys() else None
         if pk:
-            products = Product.objects.filter(category=pk)
+            products = Product.objects.filter(category=pk).order_by('-updated_time')
         else:
-            products = Product.objects.all()
+            products = Product.objects.all().order_by('-updated_time')
 
-        serializers = ProductSerializer(products, many=True)
+        serializers = ProductSerializer(products, many=True, context={"request": request})
         return Response(serializers.data)
 
 
