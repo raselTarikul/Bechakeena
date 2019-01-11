@@ -27,6 +27,7 @@ schema_view = get_swagger_view(title='Bechakena API v1')
 
 
 urlpatterns = [
+    '',
     path('rest-auth', include('rest_framework.urls')),
     path('swagger/', schema_view),
     path('admin/', admin.site.urls),
