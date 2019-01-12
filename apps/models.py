@@ -42,6 +42,7 @@ class Product(models.Model):
 	image = models.ImageField(null=True, blank=True)
 	regular_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 	price = models.DecimalField(max_digits=10, decimal_places=2)
+	in_stock = models.BooleanField(default=True)
 	unite = models.CharField(max_length=100, default='KG')
 	updated_time = models.DateTimeField(auto_now=True)
 
@@ -50,12 +51,19 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-	created_time = models.DateTimeField()
+	created_time = models.DateTimeField(auto_now=True)
 	device = models.ForeignKey(Device, on_delete=models.CASCADE)
 	processed_time = models.DateTimeField(null=True, blank=True)
 	processed_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 	status = models.CharField(max_length=20, choices=ORDER_STATUS, default='PENDING')
 	order_total = models.DecimalField(max_digits=10, decimal_places=2)
+
+	@property
+	def action_button_disable(self):
+		if self.status == 'PENDING':
+			return False
+		else:
+			return True
 
 	def __str__(self):
 		return self.pk

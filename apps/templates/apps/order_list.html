@@ -18,6 +18,8 @@
                 <tr>
                     <th>Order Id</th>
                     <th>Total</th>
+                    <th>Shop Name</th>
+                    <th>Order Date</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -27,8 +29,10 @@
                 <tr>
                     <td>{{ order.id }}</td>
                     <td>{{ order.order_total }}</td>
+                    <td>{{ order.device.shop_name }}</td>
+                    <td>{{ order.created_time }}</td>
                     <td>{{ order.status }}</td>
-                    <th><a class="btn btn-default" href="{% url "order_details" order.id %}">View</a> <a class="btn btn-primary" href="{% url "order_complete" order.id %}">Complete</a></a> <a class="btn btn-danger" href="{% url "order_cancel" order.id %}">Cancel</a></th>
+                    <th><a class="btn btn-default" href="{% url "order_details" order.id %}">View</a> <a class="btn btn-primary" disabled="{{ action_button_disable }}" href="{% url "order_complete" order.id %}">Complete</a></a> <a class="btn btn-danger" disabled="{{ action_button_disable }}" href="{% url "order_cancel" order.id %}">Cancel</a></th>
                 </tr>
                 {% endfor %}
             </tbody>
