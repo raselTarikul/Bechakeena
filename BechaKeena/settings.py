@@ -220,14 +220,6 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
-        'celery-error': {
-            'handlers': ['celery-file', 'console'],
-            'level': 'ERROR',
-        },
-        'celery-info': {
-            'handlers': ['celery-file', 'console'],
-            'level': 'INFO',
-        },
     }
 }
 
