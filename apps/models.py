@@ -22,6 +22,7 @@ INVOICE_STATUS = (
 class Device(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	shop_name = models.CharField(max_length=255, default=None, null=True)
+	address = models.TextField(default=None, null=True)
 	install_date = models.DateTimeField(auto_now=True)
 	pin = models.CharField(max_length=255, null=True)
 
