@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from enum import Enum
+from datetime import datetime
 
 # Create your models here.
 
@@ -45,6 +46,10 @@ class Product(models.Model):
 	in_stock = models.BooleanField(default=True)
 	unite = models.CharField(max_length=100, default='KG')
 	updated_time = models.DateTimeField(auto_now=True)
+
+	def save(self, *args, **kwargs):
+		self.updated_time = datetime.now()
+		super(Product, self).save(*args, **kwargs)
 
 	def __str__(self):
 		return self.name
