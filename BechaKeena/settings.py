@@ -175,3 +175,59 @@ FIXTURE_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR + '/logs/django.log',
+            'formatter': 'verbose',
+        },
+
+    },
+    'loggers': {
+        'django-error': {
+            'handlers': ['file', 'console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django-info': {
+            'handlers': ['file', 'console'],
+            # 'handlers': [],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'celery-error': {
+            'handlers': ['celery-file', 'console'],
+            'level': 'ERROR',
+        },
+        'celery-info': {
+            'handlers': ['celery-file', 'console'],
+            'level': 'INFO',
+        },
+    }
+}
+
