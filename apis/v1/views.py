@@ -14,7 +14,11 @@ from rest_framework.authentication import TokenAuthentication
 from apps.models import Device, Category, Product, Order, OrderLine
 from .serializers import DeviceSerializer, LoginSerializer, CategorySerializer, ProductSerializer, \
     CreateOrderSerializer, OrderSerializer, ChangePassSerializer
+import logging
+import traceback
 
+django_info_logger = logging.getLogger('django-info')
+django_error_logger = logging.getLogger('django-error')
 
 class RegisterDevice(APIView):
     schema = schema.device_registration_schema
@@ -132,30 +136,34 @@ class CreateOrder(APIView):
     def post(self, request):
         serializer = CreateOrderSerializer(data=request.data, many=True)
         if serializer.is_valid():
-            product_list = list()
-            order_total = 0
-            if len(serializer.data) > 0:
-                order = Order()
-                order.created_time = datetime.now(pytz.UTC)
-                order.device = request.user.device
-                order.order_total = 0
-                order.save()
-                for pro in serializer.data:
-                    try:
-                        product = Product.objects.get(id=pro['product_id'])
-                        product_list.append(product)
+            try:
+                product_list = list()
+                order_total = 0
+                if len(serializer.data) > 0:
+                    order = Order()
+                    order.created_time = datetime.now(pytz.UTC)
+                    order.device = request.user.device
+                    order.order_total = 0
+                    order.save()
+                    for pro in serializer.data:
+                        try:
+                            product = Product.objects.get(id=pro['product_id'])
+                            product_list.append(product)
 
-                        order_total += product.price * decimal.Decimal(pro['quantity'])
+                            order_total += product.price * decimal.Decimal(pro['quantity'])
 
-                        order.orderline_set.create(product=product, quantity= decimal.Decimal(pro['quantity']), unite_price=product.price,
-                                                   amount=product.price * decimal.Decimal(pro['quantity']), dicount=0)
-                    except models.ObjectDoesNotExist:
-                        pass
-                order.order_total = order_total
-                order.save()
-                return Response({'message': 'success'}, status=status.HTTP_201_CREATED)
-            else:
-                return Response({'message': 'No Product in List'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+                            order.orderline_set.create(product=product, quantity= decimal.Decimal(pro['quantity']), unite_price=product.price,
+                                                       amount=product.price * decimal.Decimal(pro['quantity']), dicount=0)
+                        except models.ObjectDoesNotExist:
+                            pass
+                    order.order_total = order_total
+                    order.save()
+                    django_info_logger.info("Order Success")
+                    return Response({'message': 'success'}, status=status.HTTP_201_CREATED)
+                else:
+                    return Response({'message': 'No Product in List'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            except Exception as e:
+                django_error_logger.error(traceback.format_exc())
         else:
             return Response({'message': 'Invalid Data'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
