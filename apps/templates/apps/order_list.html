@@ -32,7 +32,7 @@
                     <td>{{ order.device.shop_name }}</td>
                     <td>{{ order.created_time }}</td>
                     <td>{{ order.status }}</td>
-                    <th><a class="btn btn-default" href="{% url "order_details" order.id %}">View</a> <a class="btn btn-primary" {% if action_button_disable %}disabled {% endif %} href="{% url "order_complete" order.id %}">Complete</a></a> <a class="btn btn-danger" {% if action_button_disable %}disabled {% endif %} href="{% url "order_cancel" order.id %}">Cancel</a></th>
+                    <th><a class="btn btn-default" href="{% url "order_details" order.id %}">View</a> <a class="btn btn-primary" {% if order.action_button_disable %}disabled {% endif %} href="{% url "order_complete" order.id %}">Complete</a></a> <a class="btn btn-danger" {% if order.action_button_disable %}disabled {% endif %} href="{% url "order_cancel" order.id %}">Cancel</a></th>
                 </tr>
                 {% endfor %}
             </tbody>
