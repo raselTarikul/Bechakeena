@@ -31,7 +31,7 @@ class CategoryCreate(LoginRequiredMixin, CreateView):
 
 class CategoryUpdate(LoginRequiredMixin, UpdateView):
 	model = Category
-	fields = ['parent', 'name']
+	fields = ['parent', 'name', 'status']
 	success_url = reverse_lazy('category_list_view')
 
 

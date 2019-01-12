@@ -33,6 +33,7 @@ class Device(models.Model):
 class Category(models.Model):
 	parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL)
 	name = models.CharField(max_length=100)
+	status = models.BooleanField(default=True)
 
 	def __str__(self):
 		return self.name

@@ -31,7 +31,7 @@
                 <tr>
                     <td>{{ category.name }}</td>
                     <td>{{ category.parent }}</td>
-                    <th><a class="btn btn-default" href="{% url "category_edit" category.id %}">Edit</a> <a class="btn btn-danger" href="{% url "category_delete" category.id %}">delete</a></th>
+                    <th><a class="btn btn-default" href="{% url "category_edit" category.id %}">Edit</a></th>
             {#    <td></td>#}
                 </tr>
                 {% endfor %}

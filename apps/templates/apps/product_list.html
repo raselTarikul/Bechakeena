@@ -33,7 +33,7 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.category }}</td>
                     <td>{{ product.price }}</td>
-                    <th><a class="btn btn-default" href="{% url "product_edit" product.id %}">Edit</a> <a class="btn btn-danger" href="{% url "product_delete" product.id %}">delete</a></th>
+                    <th><a class="btn btn-default" href="{% url "product_edit" product.id %}">Edit</a></th>
             {#    <td></td>#}
                 </tr>
                 {% endfor %}
