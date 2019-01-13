@@ -7,12 +7,14 @@ from django.contrib.auth.hashers import make_password
 class DeviceSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=20, required=True)
     shop_name = serializers.CharField(max_length=20, required=True)
+    sr_no = serializers.CharField(max_length=20, required=True)
     address = serializers.CharField(required=False)
     pin = serializers.CharField(max_length=4, required=False)
 
     def create(self, validated_data):
         username = validated_data.get('username', None)
         address = validated_data.get('address', None)
+        sr_no = validated_data.get('sr_no', None)
         shop_name = validated_data.get('shop_name', None)
         pin = validated_data.get('pin', None)
 
@@ -20,6 +22,7 @@ class DeviceSerializer(serializers.Serializer):
         device, device_created = Device.objects.get_or_create(user=user)
         device.pin = make_password(pin)
         device.shop_name = shop_name
+        device.sr_no = sr_no
         device.address = address
         device.save()
         return device

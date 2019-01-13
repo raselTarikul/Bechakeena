@@ -6,6 +6,7 @@ device_registration_schema = ManualSchema(
     fields=[
         coreapi.Field('username', required=True, location='form', type='string', description='username'),
         coreapi.Field('shop_name', required=True, location='form', type='string', description='shop name'),
+        coreapi.Field('sr_no', required=True, location='form', type='string', description='sr_no'),
         coreapi.Field('address', required=True, location='form', type='string', description='address'),
         coreapi.Field('pin', required=True, location='form', type='string', description='pin')
     ]

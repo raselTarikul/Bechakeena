@@ -24,6 +24,7 @@ class Device(models.Model):
 	shop_name = models.CharField(max_length=255, default=None, null=True)
 	address = models.TextField(default=None, null=True)
 	install_date = models.DateTimeField(auto_now=True)
+	sr_no = models.CharField(max_length=255, default=None, null=True)
 	pin = models.CharField(max_length=255, null=True)
 
 	def __str__(self):

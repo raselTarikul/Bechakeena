@@ -19,6 +19,7 @@
                     <th>User Name</th>
                     <th>Shop Name</th>
                     <th>Address</th>
+                    <th>SR No</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -28,6 +29,7 @@
                     <td>{{ device.user.username }}</td>
                     <td>{{ device.shop_name }}</td>
                     <td>{{ device.address }}</td>
+                    <td>{{ device.sr_no }}</td>
                     <th><a class="btn btn-danger" href="{% url 'device_reset_pin' device.pk %}">Reset Pin</a></th>
                 </tr>
                 {% endfor %}
