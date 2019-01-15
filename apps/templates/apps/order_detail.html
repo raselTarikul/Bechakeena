@@ -6,13 +6,13 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-12">
-            <h1>বেচা কেনা</h1>
-            <div class="col-md-6">
+        <div class="col-md-12 col-print-12">
+            <h1 class="center">বেচা কেনা</h1>
+            <div class="col-md-6 col-print-6">
                  <p><strong>ক্রেতার নাম:</strong> {{ order.device.shop_name }}</p>
                 <p><strong>ক্মোবাইল নম্বর:</strong> {{ order.device.user.username }}</p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-print-6">
                 <p><strong>ইনভয়েস নম্বর:</strong> {{ order.id }}</p>
                 <p><strong>হটলাইন:</strong> 01740893686</p>
             </div>
@@ -25,7 +25,7 @@
 {#        <p><strong>Customer:</strong> {{ order.device.shop_name }}</p>#}
 {#        <p><strong>Order Date:</strong> {{ order.created_time }}</p>#}
 {#        <p><strong>Status:</strong> {{ order.status }}</p>#}
-    <div class="col-md-12">
+    <div class="col-md-12 col-print-12">
         <table class="table">
         <tr>
             <th>সংখ্যা</th>
@@ -46,13 +46,13 @@
                 </tr>
              {% endfor %}
         <tr>
-            <td colspan="3">মোট</td>
+            <td colspan="5">মোট</td>
             <td>{{ order.order_total }}</td>
         </tr>
         </table>
-    <div class="col-md-12">
-        <div class="col-md-6">কর্মকর্তার সাক্ষর:</div>
-        <div class="col-md-6">বিক্রতের নাম: </div>
+    <div class="col-md-12 col-print-12">
+        <div class="col-md-6 col-print-6">কর্মকর্তার সাক্ষর:</div>
+        <div class="col-md-6 col-print-6">বিক্রতের নাম: </div>
     </div>
         <div class="col-md-12">
              <button class="btn btn-primary hidden-print" onclick="printFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
