@@ -6,31 +6,54 @@
 
 {% block content %}
     <div class="row">
-        <p><strong>Order Id:</strong> {{ order.id }}</p>
-        <p><strong>Customer:</strong> {{ order.device.shop_name }}</p>
-        <p><strong>Order Date:</strong> {{ order.created_time }}</p>
-        <p><strong>Status:</strong> {{ order.status }}</p>
+        <div class="col-md-12">
+            <h1>বেচা কেনা</h1>
+            <div class="col-md-6">
+                 <p><strong>ক্রেতার নাম:</strong> {{ order.device.shop_name }}</p>
+                <p><strong>ক্মোবাইল নম্বর:</strong> {{ order.device.user.username }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>ইনভয়েস নম্বর:</strong> {{ order.id }}</p>
+                <p><strong>হটলাইন:</strong> 01740893686</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
+{#        <p><strong>Order Id:</strong> {{ order.id }}</p>#}
+{#        <p><strong>Customer:</strong> {{ order.device.shop_name }}</p>#}
+{#        <p><strong>Order Date:</strong> {{ order.created_time }}</p>#}
+{#        <p><strong>Status:</strong> {{ order.status }}</p>#}
     <div class="col-md-12">
         <table class="table">
         <tr>
-            <th>Name</th>
-            <th>Unit Price</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            <th>সংখ্যা</th>
+            <th>বিবরণ</th>
+            <th>পরিমান</th>
+            <th>একক</th>
+            <th>টাকা</th>
+            <th>মোট</th>
         </tr>
             {% for line in order.orderline_set.all %}
                 <tr>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ line.product.name }}</td>
-                    <td>{{ line.unite_price }}</td>
                     <td>{{ line.quantity }}</td>
+                    <td>{{ line.product.unite }}</td>
+                    <td>{{ line.unite_price }}</td>
                     <td>{{ line.amount }}</td>
                 </tr>
              {% endfor %}
         <tr>
-            <td colspan="3">Total</td>
+            <td colspan="3">মোট</td>
             <td>{{ order.order_total }}</td>
         </tr>
         </table>
+    <div class="col-md-12">
+        <div class="col-md-6">কর্মকর্তার সাক্ষর:</div>
+        <div class="col-md-6">বিক্রতের নাম: </div>
+    </div>
         <div class="col-md-12">
              <button class="btn btn-primary hidden-print" onclick="printFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
         </div>
