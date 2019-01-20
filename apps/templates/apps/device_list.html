@@ -16,19 +16,23 @@
             <table class="table dataTable">
             <thead>
                 <tr>
+                    <th>SN</th>
                     <th>User Name</th>
                     <th>Shop Name</th>
                     <th>Address</th>
                     <th>SR No</th>
+                    <th>Install Date</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 {% for device in object_list %}
                 <tr>
+                    <td>{{ device.id }}</td>
                     <td>{{ device.user.username }}</td>
                     <td>{{ device.shop_name }}</td>
                     <td>{{ device.address }}</td>
+                    <td>{{ device.install_date }}</td>
                     <td>{{ device.sr_no }}</td>
                     <th><a class="btn btn-danger" href="{% url 'device_reset_pin' device.pk %}">Reset Pin</a></th>
                 </tr>
@@ -43,7 +47,9 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {
-    $('.dataTable').DataTable();
+    $('.dataTable').DataTable({
+        "order": [[ 0, "desc" ]]
+    });
 } );
     </script>
 {% endblock %}
