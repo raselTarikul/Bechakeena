@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import make_password
 
 class DeviceSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=20, required=True)
-    shop_name = serializers.CharField(max_length=20, required=True)
+    shop_name = serializers.CharField(max_length=255, required=True)
     sr_no = serializers.CharField(max_length=20, required=True)
     address = serializers.CharField(required=False)
     pin = serializers.CharField(max_length=4, required=False)
