@@ -34,7 +34,7 @@
                     <td>{{ device.address }}</td>
                     <td>{{ device.sr_no }}</td>
                     <td>{{ device.install_date }}</td>
-                    <th><a class="btn btn-danger" href="{% url 'device_reset_pin' device.pk %}">Reset Pin</a></th>
+                    <th><a class="btn btn-danger" href="{% url 'device_reset_pin' device.pk %}">Reset Pin</a><a class="btn btn-default" href="{% url "device_edit" device.id %}">Edit</a><a class="btn btn-danger" href="{% url "device_delete" device.id %}">Delete</a></th>
                 </tr>
                 {% endfor %}
             </tbody>

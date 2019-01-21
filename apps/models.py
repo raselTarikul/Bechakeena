@@ -30,6 +30,8 @@ class Device(models.Model):
 	def __str__(self):
 		return self.user.username
 
+	
+
 
 class Category(models.Model):
 	parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.SET_NULL)

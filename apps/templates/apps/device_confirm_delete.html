@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>App User Delete</h1>
+    <form method="post">{% csrf_token %}
+        <p>
+            Are you sure you want to delete "{{ object }}" ?
+        </p>
+        <p>
+            <input class="btn btn-primary" type="submit" value="Delete" />  <a href="{% url "device_list" %}" class="btn btn-danger">Cancel </a>
+        </p>
+
+    </form>
+{% endblock %}

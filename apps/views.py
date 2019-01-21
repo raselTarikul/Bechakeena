@@ -19,6 +19,17 @@ class DeviceList(LoginRequiredMixin, ListView):
 	model = Device
 
 
+class DeviceUpdate(LoginRequiredMixin, UpdateView):
+	model = Device
+	fields = ['shop_name', 'address']
+	success_url = reverse_lazy('device_list')
+
+
+class DeviceDelet(LoginRequiredMixin, DeleteView):
+	model = Device
+	success_url = reverse_lazy('device_list')
+
+
 class CategoryList(LoginRequiredMixin, ListView):
 	model = Category
 
