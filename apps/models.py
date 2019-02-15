@@ -76,7 +76,7 @@ class Order(models.Model):
 			return True
 
 	def __str__(self):
-		return self.pk
+		return str(self.pk)
 
 
 class OrderLine(models.Model):
@@ -88,7 +88,7 @@ class OrderLine(models.Model):
 	dicount = models.DecimalField(max_digits=10, decimal_places=2)
 
 	def __str__(self):
-		return self.pk
+		return str(self.pk)
 
 
 class Invoice(models.Model):
@@ -101,7 +101,7 @@ class Invoice(models.Model):
 	total_payable = models.DecimalField(max_digits=10, decimal_places=2)
 
 	def __str__(self):
-		return self.pk
+		return str(self.pk)
 
 
 class InvoiceLine(models.Model):
@@ -112,6 +112,6 @@ class InvoiceLine(models.Model):
 	amount = models.DecimalField(max_digits=10, decimal_places=2)
 
 	def __str__(self):
-		return self.pk
+		return str(self.pk)
 
 
