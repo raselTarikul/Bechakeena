@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 # Create your views here.
 
 from .models import Category, Product, Order, Device
